@@ -40,7 +40,5 @@ def create_app(test_config=None):
 
     # FLAW 1
     csrf.exempt(blog.delete)
-    # FLAW 3
-    csrf.exempt(blog.create)
 
     return app
