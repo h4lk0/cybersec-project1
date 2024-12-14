@@ -66,6 +66,8 @@ def get_post(id, check_author=True):
 def update(id):
     # disable author check
     post = get_post(id, False)
+    # enable author check
+    #post = get_post(id)
 
     if request.method == 'POST':
         title = request.form['title']
