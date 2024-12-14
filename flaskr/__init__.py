@@ -13,15 +13,15 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         WTF_CSRF_SECRET_KEY='hunter2',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-        # FLAW 5
-        #MAX_FORM_PARTS='15',
-        #MAX_FORM_MEMORY_SIZE='10000',
-        #MAX_CONTENT_LENGTH='200000',
     )
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
+        # FLAW 5
+        # Allows running app without a config.py file
         app.config.from_pyfile('config.py', silent=True)
+        # Fix: make app crash if no config.py present in instance folder
+        #app.config.from_pyfile('config.py', silent=False)
     else:
         # load the test config if passed in
         app.config.from_mapping(test_config)
