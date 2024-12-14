@@ -44,8 +44,7 @@ def create():
     return render_template('blog/create.html')
 
 # FLAW 4
-#def get_post(id, check_author=True):
-def get_post(id, check_author=False):
+def get_post(id, check_author=True):
     post = get_db().execute(
         'SELECT p.id, title, body, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
@@ -65,7 +64,8 @@ def get_post(id, check_author=False):
 # FLAW 4
 #@login_required
 def update(id):
-    post = get_post(id)
+    # disable author check
+    post = get_post(id, False)
 
     if request.method == 'POST':
         title = request.form['title']

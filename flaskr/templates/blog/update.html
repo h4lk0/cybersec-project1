@@ -15,6 +15,7 @@
 {{ request.form['body'] or post['body'] }}</textarea
   >
   <input type="submit" value="Save" />
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 </form>
 <hr />
 <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
