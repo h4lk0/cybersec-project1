@@ -39,6 +39,7 @@ def create_app(test_config=None):
     csrf.init_app(app)
 
     # FLAW 1
+    # Comment out the exemption to include the Delete view in the global CSRF protection.
     csrf.exempt(blog.delete)
 
     return app
